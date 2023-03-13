@@ -3,7 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Configure MemoryCache
 builder.Services.AddMemoryCache();
+
+//Configure Distributed Cache
+builder.Services.AddDistributedSqlServerCache(option =>
+{
+    option.ConnectionString = builder.Configuration.GetConnectionString("CacheConnection");
+    option.SchemaName = "dbo";
+    option.TableName = "CacheTable";
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

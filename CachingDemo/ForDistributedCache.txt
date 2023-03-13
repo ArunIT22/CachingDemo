@@ -1,0 +1,12 @@
+﻿To Implement Distributed Cache
+
+Install Package using NuGet
+Microsoft.Extensions.Caching.SqlServer -version 6.0.14
+
+Run the below command from Package Manager Console to create sql table for caching
+Syntax : dotnet sql-cache create <ConnectionString> <schemaname> <tableName>
+dotnet sql-cache create "Server=.; Database=BikeStores; Integrated Security=true;" dbo CacheTable
+
+Add Connection String in appSettings.json
+
+Configure Distributed Cache in program.cs
